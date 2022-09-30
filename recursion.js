@@ -11,21 +11,38 @@ function product(nums, i = 0) {
 
 /** longest: return the length of the longest word in an array of words. */
 
-function longest(words) {
-
+function longest(words, i = 0, largestSoFar = 0) {
+  if (i === words.length) {
+    return largestSoFar;
+  }
+  largestSoFar = Math.max(words[i].length, largestSoFar);
+  return longest(words, i + 1, largestSoFar);
 }
+
 
 /** everyOther: return a string with every other letter. */
 
-function everyOther(str) {
-
+function everyOther(str, i = 0, newStr = '') {
+  debugger;
+  if (str.length <= i) return newStr;
+  console.log(newStr);
+  newStr += str[i];
+  return everyOther(str, i + 2, newStr);
 }
 
 /** isPalindrome: checks whether a string is a palindrome or not. */
 
-function isPalindrome(str) {
 
+function isPalindrome(str, i = str.length - 1, reverseStr = '') {
+  if (!str) return false;
+  if (i < 0) {
+    if (reverseStr === str) return true;
+    return false;
+  }
+  reverseStr += str[i];
+  return isPalindrome(str, i - 1, reverseStr);
 }
+
 
 /** findIndex: return the index of val in arr (or -1 if val is not present). */
 
